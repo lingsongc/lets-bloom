@@ -5,71 +5,43 @@ using UnityEngine.InputSystem;
 
 public class CustomerDraggable : MonoBehaviour {
     
-    private Camera mainCamera;
-    
-    private bool isDragging = false;
-    
     // For Drag and Drop
-    private Vector3 offset;
+    private bool isDragging = false;
+    private bool isLocked = false;
+    
+    private Vector3 dragOffset;
+    
     private Vector2 origin;
-    private Vector2 pointerPosition;
     
     // For Snapping
+    [SerializeField] private float chairOffset = 0.7f;
     private Transform snapTarget;
     private GameObject chair;
 
     private void Start() {
-        mainCamera = Camera.main;
         origin = transform.position;
     }
+    
+    public void Drag(Vector3 worldPos) {
+        if (!isDragging) return;
 
-    private void Update() {
-        if (isDragging) {
-            transform.position = GetWorldPosition() + offset;
-        }
+        transform.position = worldPos + dragOffset;
     }
 
-    // Retrieve the coords of Pointer
-    private Vector3 GetWorldPosition() {
-        Vector3 worldPos = mainCamera.ScreenToWorldPoint(pointerPosition);
-        worldPos.z = 0f;
-        return worldPos;
-    }
-
-    private void OnPoint(InputValue value) {
-        pointerPosition = value.Get<Vector2>();
-    }
-
-    private void OnClick(InputValue value) {
-        if (value.isPressed) {
-            StartDrag();
-        } else {
-            StopDrag();
-        }
-    }
-
-    private void StartDrag() {
-        Vector3 worldPosition = GetWorldPosition();
-
-        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
-
-        if (hit.collider != null && hit.collider.gameObject == gameObject) {
-            isDragging = true;
-            offset = transform.position - worldPosition;
-        }
+    public bool CanDrag() {
+        return !isLocked;
     }
     
-    private void StopDrag() {
-        isDragging = false;
+    public void StartDrag(Vector3 worldPosition) {
+        if (isLocked) return;
 
-        if (snapTarget != null) {
-            transform.position = snapTarget.position;
-            chair = snapTarget.gameObject;
-        } else {
-            transform.position = origin;
-            chair = null;
-        }
-        
+        isDragging = true;
+        dragOffset = transform.position - worldPosition;
+    }
+    
+    public void StopDrag() {
+        isDragging = false;
+        SnapToChair();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -82,5 +54,29 @@ public class CustomerDraggable : MonoBehaviour {
         if (other.CompareTag("Chair")) {
             snapTarget = other.transform;
         }
+    }
+
+    private void SnapToChair() {
+        if (snapTarget != null) {
+            
+            ChairManager slot = snapTarget.GetComponent<ChairManager>();
+            
+            Debug.Log(slot != null && !slot.IsOccupied());
+            
+            if (slot != null && !slot.IsOccupied()) {
+                Vector3 snapPosition = snapTarget.position;
+                snapPosition.y += chairOffset;
+                
+                transform.position = snapPosition;
+                
+                chair = snapTarget.gameObject;
+                slot.Seat(gameObject);
+                
+                isLocked = true;
+                return;
+            }
+        }
+        transform.position = origin;
+        chair = null;
     }
 }

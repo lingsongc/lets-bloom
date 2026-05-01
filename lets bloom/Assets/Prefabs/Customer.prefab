@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8310578835852675831, guid: c4f3df0a49b1f5644ad104b8647c7429, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4787656969580279412}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce0f4c05de61c546ae53fd8c9a64cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableCustomer
+  chairOffset: 0.8
 --- !u!114 &4041257768126406133
 MonoBehaviour:
   m_ObjectHideFlags: 0
