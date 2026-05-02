@@ -17,11 +17,26 @@ public class CustomerDraggable : MonoBehaviour {
     [SerializeField] private float chairOffset = 0.7f;
     private Transform snapTarget;
     private GameObject chair;
+    
+    // For Queue
+    private QueueManager queueManager;
+    private bool isMovingToQueue = false;
+    private Vector3 targetPosition;
 
     private void Start() {
         origin = transform.position;
     }
-    
+
+    private void Update() {
+        if (isMovingToQueue && !isDragging) {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, targetPosition) < 0.05f) {
+                isMovingToQueue = false;
+            }
+        }
+    }
+
     public void Drag(Vector3 worldPos) {
         if (!isDragging) return;
 
@@ -29,7 +44,7 @@ public class CustomerDraggable : MonoBehaviour {
     }
 
     public bool CanDrag() {
-        return !isLocked;
+        return !isLocked && !isMovingToQueue;
     }
     
     public void StartDrag(Vector3 worldPosition) {
@@ -73,10 +88,24 @@ public class CustomerDraggable : MonoBehaviour {
                 slot.Seat(gameObject);
                 
                 isLocked = true;
+
+                if (queueManager != null) {
+                    queueManager.Dequeue(this);
+                }
+                
                 return;
             }
         }
         transform.position = origin;
         chair = null;
+    }
+
+    public void SetQueueManager(QueueManager manager) {
+        queueManager = manager;
+    }
+
+    public void MoveTo(Vector3 position) {
+        targetPosition = position;
+        isMovingToQueue = true;
     }
 }
