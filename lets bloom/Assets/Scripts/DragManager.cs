@@ -3,14 +3,11 @@ using UnityEngine.InputSystem;
 
 public class DragManager : MonoBehaviour {
     
-    public static DragManager Instance;
-    
     private Camera mainCamera;
     private CustomerDraggable current;
     private Vector2 pointerPosition;
     
     private void Start() {
-        Instance = this;
         mainCamera = Camera.main;
     }
     
@@ -38,6 +35,7 @@ public class DragManager : MonoBehaviour {
         }
     }
     
+    // Check if grabbing onto a Customer and Drag it
     private void TryStartDrag(Vector3 worldPosition) {
         if (current != null) return;
 
@@ -46,8 +44,7 @@ public class DragManager : MonoBehaviour {
         if (hit.collider != null) {
             CustomerDraggable draggable = hit.collider.GetComponent<CustomerDraggable>();
 
-            if (draggable != null && draggable.CanDrag())
-            {
+            if (draggable != null && draggable.CanDrag()) {
                 current = draggable;
                 current.StartDrag(worldPosition);
             }
