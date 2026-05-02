@@ -27,7 +27,7 @@ public class CustomerSpawner : MonoBehaviour {
     private void SpawnCustomer() {
         GameObject obj = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
         CustomerDraggable customer = obj.GetComponent<CustomerDraggable>();
-        queueManager.Enqueue(customer);
         customer.SetQueueManager(queueManager);
+        queueManager.Enqueue(customer);
     }
 }
