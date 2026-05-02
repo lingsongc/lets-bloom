@@ -1,17 +1,11 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CustomerDraggable : MonoBehaviour {
     
     // For Drag and Drop
     private bool isDragging = false;
     private bool isLocked = false;
-    
     private Vector3 dragOffset;
-    
-    private Vector2 origin;
     
     // For Snapping
     [SerializeField] private float chairOffset = 0.7f;
@@ -22,18 +16,14 @@ public class CustomerDraggable : MonoBehaviour {
     private QueueManager queueManager;
     private bool isMovingToQueue = false;
     private Vector3 targetPosition;
-
-    private void Start() {
-        origin = transform.position;
-    }
+    public float queueOffset;
+    public float xOffset;
 
     private void Update() {
         if (isMovingToQueue && !isDragging) {
-            Vector3 position = transform.position;
-            position.y = Mathf.MoveTowards(position.y, targetPosition.y, 5f * Time.deltaTime);
-            transform.position = position;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
             
-            if (Mathf.Abs(position.y - targetPosition.y) < 0.05f) {
+            if (Vector3.Distance(transform.position, targetPosition) < 0.05f) {
                 isMovingToQueue = false;
             }
         }
@@ -60,16 +50,18 @@ public class CustomerDraggable : MonoBehaviour {
         isDragging = false;
         SnapToChair();
     }
-
+    
+    // Reference the Chair when hovering over it
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Chair")) {
             snapTarget = other.transform;
         }
     }
 
+    // Dereference the Chair when hovering over it
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Chair")) {
-            snapTarget = other.transform;
+            snapTarget = null;
         }
     }
 
@@ -77,8 +69,6 @@ public class CustomerDraggable : MonoBehaviour {
         if (snapTarget != null) {
             
             ChairManager slot = snapTarget.GetComponent<ChairManager>();
-            
-            Debug.Log(slot != null && !slot.IsOccupied());
             
             if (slot != null && !slot.IsOccupied()) {
                 Vector3 snapPosition = snapTarget.position;
@@ -98,7 +88,7 @@ public class CustomerDraggable : MonoBehaviour {
                 return;
             }
         }
-        transform.position = origin;
+        transform.position = targetPosition;
         chair = null;
     }
 
@@ -108,7 +98,6 @@ public class CustomerDraggable : MonoBehaviour {
 
     public void MoveTo(Vector3 position) {
         targetPosition = position;
-        origin = position;
         isMovingToQueue = true;
     }
 }

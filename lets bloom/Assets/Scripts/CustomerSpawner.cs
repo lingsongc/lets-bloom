@@ -10,7 +10,7 @@ public class CustomerSpawner : MonoBehaviour {
     [SerializeField] private float minSpawnTime = 2f;
     [SerializeField] private float maxSpawnTime = 5f;
 
-    [SerializeField] private float spawnRange = 0.5f;
+    [SerializeField] public static float spawnRange = 0.5f;
     
     private void Start() {
         StartCoroutine(SpawnLoop());
@@ -18,7 +18,7 @@ public class CustomerSpawner : MonoBehaviour {
 
     private IEnumerator SpawnLoop() {
         while (true) {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(minSpawnTime, maxSpawnTime));
+            yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));
 
             if (!queueManager.IsFull()) {
                 SpawnCustomer();
@@ -29,11 +29,13 @@ public class CustomerSpawner : MonoBehaviour {
     private void SpawnCustomer() {
         // Vary the x-axis of Customer
         Vector3 spawnPosition = spawnPoint.position;
-        spawnPosition.x += Random.Range(-spawnRange, spawnRange);
+        float xOffset = Random.Range(-spawnRange, spawnRange);
+        spawnPosition.x += xOffset;
         
         // Create a new instance of Customer
         GameObject obj = Instantiate(customerPrefab, spawnPosition, Quaternion.identity);
         CustomerDraggable customer = obj.GetComponent<CustomerDraggable>();
+        customer.xOffset = xOffset;
         
         customer.SetQueueManager(queueManager);
         queueManager.Enqueue(customer);
