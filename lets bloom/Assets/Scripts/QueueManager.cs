@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class QueueManager : MonoBehaviour {
     
+    // Parameters
     [SerializeField] private int queueMaxSize = 5;
     [SerializeField] private float queueSpacing = 1.5f;
     [SerializeField] private float queueVariation = 0.3f;
@@ -28,6 +29,7 @@ public class QueueManager : MonoBehaviour {
         int index = queue.IndexOf(customer);
         
         if (queue.Remove(customer)) {
+            // Jiggle the Customers around
             for (int i = index; i < queue.Count; i++) {
                 queue[i].queueOffset = Random.Range(-queueVariation, queueVariation);
                 queue[i].xOffset = Random.Range(-CustomerSpawner.spawnRange, CustomerSpawner.spawnRange);

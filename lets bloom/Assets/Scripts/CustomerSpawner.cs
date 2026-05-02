@@ -10,7 +10,7 @@ public class CustomerSpawner : MonoBehaviour {
     [SerializeField] private float minSpawnTime = 2f;
     [SerializeField] private float maxSpawnTime = 5f;
 
-    [SerializeField] public static float spawnRange = 0.5f;
+    public static float spawnRange = 0.5f;
     
     private void Start() {
         StartCoroutine(SpawnLoop());

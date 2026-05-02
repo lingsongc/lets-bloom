@@ -10,7 +10,6 @@ public class CustomerDraggable : MonoBehaviour {
     // For Snapping
     [SerializeField] private float chairOffset = 0.7f;
     private Transform snapTarget;
-    private GameObject chair;
     
     // For Queue
     private QueueManager queueManager;
@@ -57,7 +56,7 @@ public class CustomerDraggable : MonoBehaviour {
             snapTarget = other.transform;
         }
     }
-
+    
     // Dereference the Chair when hovering over it
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Chair")) {
@@ -68,16 +67,15 @@ public class CustomerDraggable : MonoBehaviour {
     private void SnapToChair() {
         if (snapTarget != null) {
             
-            ChairManager slot = snapTarget.GetComponent<ChairManager>();
+            ChairManager chair = snapTarget.GetComponent<ChairManager>();
             
-            if (slot != null && !slot.IsOccupied()) {
+            if (chair != null && !chair.IsOccupied()) {
                 Vector3 snapPosition = snapTarget.position;
                 snapPosition.y += chairOffset;
                 
                 transform.position = snapPosition;
                 
-                chair = snapTarget.gameObject;
-                slot.Seat(gameObject);
+                chair.Seat(gameObject);
                 
                 isLocked = true;
 
@@ -89,7 +87,6 @@ public class CustomerDraggable : MonoBehaviour {
             }
         }
         transform.position = targetPosition;
-        chair = null;
     }
 
     public void SetQueueManager(QueueManager manager) {
