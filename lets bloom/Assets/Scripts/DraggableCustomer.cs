@@ -29,9 +29,11 @@ public class CustomerDraggable : MonoBehaviour {
 
     private void Update() {
         if (isMovingToQueue && !isDragging) {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, targetPosition) < 0.05f) {
+            Vector3 position = transform.position;
+            position.y = Mathf.MoveTowards(position.y, targetPosition.y, 5f * Time.deltaTime);
+            transform.position = position;
+            
+            if (Mathf.Abs(position.y - targetPosition.y) < 0.05f) {
                 isMovingToQueue = false;
             }
         }
@@ -106,6 +108,7 @@ public class CustomerDraggable : MonoBehaviour {
 
     public void MoveTo(Vector3 position) {
         targetPosition = position;
+        origin = position;
         isMovingToQueue = true;
     }
 }
