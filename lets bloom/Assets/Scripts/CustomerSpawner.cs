@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,8 +10,9 @@ public class CustomerSpawner : MonoBehaviour {
 
     [SerializeField] private float minSpawnTime = 2f;
     [SerializeField] private float maxSpawnTime = 5f;
-
     public static float spawnRange = 0.5f;
+    
+    [SerializeField] private TraitDatabase traitDatabase;
     
     private void Start() {
         StartCoroutine(SpawnLoop());
@@ -36,6 +38,13 @@ public class CustomerSpawner : MonoBehaviour {
         GameObject obj = Instantiate(customerPrefab, spawnPosition, Quaternion.identity);
         CustomerDraggable customer = obj.GetComponent<CustomerDraggable>();
         customer.xOffset = xOffset;
+        
+        //Set Traits
+        List<TraitDefinition> preferTraits = traitDatabase.GetTraits();
+        List<TraitDefinition> profileTraits = traitDatabase.GetTraits();
+        customer.SetTraits(preferTraits, traitDatabase.GetDescriptions(preferTraits),
+            profileTraits, traitDatabase.GetDescriptions(profileTraits));
+        
         
         customer.SetQueueManager(queueManager);
         queueManager.Enqueue(customer);
