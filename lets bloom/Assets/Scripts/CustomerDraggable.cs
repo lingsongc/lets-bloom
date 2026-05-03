@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class CustomerDraggable : MonoBehaviour {
@@ -20,11 +19,8 @@ public class CustomerDraggable : MonoBehaviour {
     public float queueOffset;
     public float xOffset;
     
-    // For Score
-    private List<TraitDefinition> preferTraits;
-    private List<string> preferDescriptions;
-    private List<TraitDefinition> profileTraits;
-    private List<string> profileDescriptions;
+    // For Profile
+    private CustomerProfile profile;
 
     private void Update() {
         if (isMovingToQueue && !isDragging) {
@@ -106,11 +102,7 @@ public class CustomerDraggable : MonoBehaviour {
         isMovingToQueue = true;
     }
 
-    public void SetTraits(List<TraitDefinition> preferTraitList, List<string> preferDescriptionList,
-        List<TraitDefinition> profileTraitList, List<string> profileDescriptionList) {
-        preferTraits = preferTraitList;
-        preferDescriptions = preferDescriptionList;
-        profileTraits = profileTraitList;
-        profileDescriptions = profileDescriptionList;
+    public void SetProfile(CustomerProfile customerProfile) {
+        profile = customerProfile;
     }
 }

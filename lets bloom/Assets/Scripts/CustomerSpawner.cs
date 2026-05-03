@@ -39,12 +39,13 @@ public class CustomerSpawner : MonoBehaviour {
         CustomerDraggable customer = obj.GetComponent<CustomerDraggable>();
         customer.xOffset = xOffset;
         
-        //Set Traits
+        //Set Traits and Sprite
+        CustomerProfile profile = new CustomerProfile();
         List<TraitDefinition> preferTraits = traitDatabase.GetTraits();
         List<TraitDefinition> profileTraits = traitDatabase.GetTraits();
-        customer.SetTraits(preferTraits, traitDatabase.GetDescriptions(preferTraits),
+        profile.SetTraits(preferTraits, traitDatabase.GetDescriptions(preferTraits),
             profileTraits, traitDatabase.GetDescriptions(profileTraits));
-        
+        customer.SetProfile(profile);
         
         customer.SetQueueManager(queueManager);
         queueManager.Enqueue(customer);
