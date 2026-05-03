@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,11 @@ public class CustomerDraggable : MonoBehaviour {
     
     // For Profile
     private CustomerProfile profile;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void Update() {
         if (isMovingToQueue && !isDragging) {
@@ -102,7 +108,8 @@ public class CustomerDraggable : MonoBehaviour {
         isMovingToQueue = true;
     }
 
-    public void SetProfile(CustomerProfile customerProfile) {
-        profile = customerProfile;
+    public void SetProfile(CustomerProfile newProfile) {
+        profile = newProfile;
+        spriteRenderer.sprite = profile.sprite;
     }
 }

@@ -13,6 +13,7 @@ public class CustomerSpawner : MonoBehaviour {
     public static float spawnRange = 0.5f;
     
     [SerializeField] private TraitDatabase traitDatabase;
+    [SerializeField] private SpriteDatabase spriteDatabase;
     
     private void Start() {
         StartCoroutine(SpawnLoop());
@@ -39,12 +40,19 @@ public class CustomerSpawner : MonoBehaviour {
         CustomerDraggable customer = obj.GetComponent<CustomerDraggable>();
         customer.xOffset = xOffset;
         
-        //Set Traits and Sprite
         CustomerProfile profile = new CustomerProfile();
+        
+        //Set Traits
         List<TraitDefinition> preferTraits = traitDatabase.GetTraits();
         List<TraitDefinition> profileTraits = traitDatabase.GetTraits();
         profile.SetTraits(preferTraits, traitDatabase.GetDescriptions(preferTraits),
             profileTraits, traitDatabase.GetDescriptions(profileTraits));
+        
+        // Set Sprite
+        int spriteID = spriteDatabase.GetRandomID();
+        profile.spriteID = spriteID;
+        profile.sprite = spriteDatabase.getDefaultSprite(spriteID);
+        
         customer.SetProfile(profile);
         
         customer.SetQueueManager(queueManager);
