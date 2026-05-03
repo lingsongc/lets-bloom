@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc6af1ed63be3845b44eaa22ee4904c, type: 3}
+  m_Name: Messy
+  m_EditorClassIdentifier: Assembly-CSharp::TraitDefinition
+  traitName: Messy
+  category: 0
+  strongTags: []
+  weakTags:
+  - chaos
+  lines:
+  - who ain't afraid to get soil in their petals
+  - willing to get their leaves dirty
+  - who refused to be pruned
+  - who is a tangle of roots and rain
+  - who enjoys rolling leaf litter

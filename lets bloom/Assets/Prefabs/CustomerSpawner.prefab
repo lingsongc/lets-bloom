@@ -49,4 +49,5 @@ MonoBehaviour:
   queueManager: {fileID: 0}
   minSpawnTime: 2
   maxSpawnTime: 5
-  spawnRange: 0.5
+  traitDatabase: {fileID: 11400000, guid: d8aefd81e7356fd498b92304c96ba2d2, type: 2}
+  spriteDatabase: {fileID: 11400000, guid: a98b1e448d7a9a94d9e7277f2722ecef, type: 2}

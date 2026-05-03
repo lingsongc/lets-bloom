@@ -180,7 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce0f4c05de61c546ae53fd8c9a64cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableCustomer
-  chairOffset: 0.8
+  chairOffset: 0.7
+  queueOffset: 0
+  xOffset: 0
+  traits: []
 --- !u!114 &4041257768126406133
 MonoBehaviour:
   m_ObjectHideFlags: 0

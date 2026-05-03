@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc6af1ed63be3845b44eaa22ee4904c, type: 3}
+  m_Name: Practical
+  m_EditorClassIdentifier: Assembly-CSharp::TraitDefinition
+  traitName: Practical
+  category: 2
+  strongTags: []
+  weakTags:
+  - neat
+  lines:
+  - who is the rock of the relationship
+  - who bears fruit for the garden
+  - who sustains the fields
+  - who wastes no sunlight
+  - whose tendrils find the sturdiest grip
