@@ -33,6 +33,7 @@ public class TableManager : MonoBehaviour {
     }
 
     private void ResetTable() {
+        numChairFilled = 0;
         foreach (var chair in chairs) {
             chair.ClearSeat();
         }

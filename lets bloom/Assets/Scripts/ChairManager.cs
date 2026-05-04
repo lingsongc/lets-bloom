@@ -18,6 +18,7 @@ public class ChairManager : MonoBehaviour {
     }
 
     public void ClearSeat() {
+        Destroy(customer);
         customer = null;
         isOccupied = false;
     }
