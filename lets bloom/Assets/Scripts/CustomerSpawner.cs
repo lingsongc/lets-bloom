@@ -53,6 +53,7 @@ public class CustomerSpawner : MonoBehaviour {
         customer.xOffset = xOffset;
         
         CustomerProfile profile = new CustomerProfile();
+        profile.SetSpriteDatabase(spriteDatabase);
         
         //Set Traits
         List<TraitDefinition> preferTraits = traitDatabase.GetTraits();
@@ -63,7 +64,7 @@ public class CustomerSpawner : MonoBehaviour {
         // Set Sprite
         int spriteID = spriteDatabase.GetRandomID();
         profile.spriteID = spriteID;
-        profile.sprite = spriteDatabase.getDefaultSprite(spriteID);
+        profile.sprite = spriteDatabase.GetDefaultSprite(spriteID);
         
         customer.SetProfile(profile);
         

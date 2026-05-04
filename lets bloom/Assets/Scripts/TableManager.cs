@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TableManager : MonoBehaviour {
@@ -11,12 +12,21 @@ public class TableManager : MonoBehaviour {
     public void FillChair() {
         numChairFilled++;
         if (numChairFilled == 2) {
-            CalculateScore();
-            StartCoroutine(DateDelay());
+            StartCoroutine(DateSequence());
         }
     }
 
-    public void CalculateScore() {
+    private IEnumerator DateSequence() {
+        yield return new WaitForSeconds(2f); 
+        
+        CalculateScore();
+        
+        yield return new WaitForSeconds(2f);
+        
+        ResetTable();
+    }
+
+    private void CalculateScore() {
         CustomerDraggable customerA = chairs[0].GetCustomer()?.GetComponent<CustomerDraggable>();
         CustomerDraggable customerB = chairs[1].GetCustomer()?.GetComponent<CustomerDraggable>();
 
@@ -25,11 +35,19 @@ public class TableManager : MonoBehaviour {
         int score = traitDatabase.GetScore(customerA.GetProfile(), customerB.GetProfile());
         GameManager.Instance.AddScore(score);
         Debug.Log(score);
+        UpdateCustomerSprite(score, customerA, customerB);
     }
 
-    private IEnumerator DateDelay() {
-        yield return new WaitForSeconds(2f);
-        ResetTable();
+    private void UpdateCustomerSprite(int score, CustomerDraggable customerA, CustomerDraggable customerB) {
+        if (score < 5) {
+            customerA.GetProfile().SetSad();
+            customerB.GetProfile().SetSad();
+        } else if (score > 15) {
+            customerA.GetProfile().SetHappy();
+            customerB.GetProfile().SetHappy();
+        }
+        customerA.UpdateSprite();
+        customerB.UpdateSprite();
     }
 
     private void ResetTable() {

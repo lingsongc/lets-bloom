@@ -118,4 +118,8 @@ public class CustomerDraggable : MonoBehaviour {
     public CustomerProfile GetProfile() {
         return profile;
     }
+
+    public void UpdateSprite() {
+        spriteRenderer.sprite = profile.sprite;
+    }
 }

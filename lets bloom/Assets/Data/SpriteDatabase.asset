@@ -17,5 +17,13 @@ MonoBehaviour:
   - {fileID: 4197860276205774954, guid: f7546f5975cf08c4b9ddaba085a7cc9f, type: 3}
   - {fileID: -5121341352869691447, guid: 50d5e4c6d312e7f4797338370f6a0812, type: 3}
   - {fileID: -7323664486574740162, guid: b6577f0660939ed4b9d26d357e320716, type: 3}
-  happySprites: []
-  sadSprites: []
+  happySprites:
+  - {fileID: -185708469129353646, guid: 8d0d74e0672af5b4ab33705812d3943e, type: 3}
+  - {fileID: -7924506333701987240, guid: 0fd967b24afaedc4a8a292088f5006f9, type: 3}
+  - {fileID: -4481735522327216552, guid: 44775f68633248c408a5cf60925f6119, type: 3}
+  - {fileID: -941234541236302411, guid: 9d4a6359d6e96fc44b24b7e71ac710d8, type: 3}
+  sadSprites:
+  - {fileID: -4725614037604208492, guid: 1d1e4a17182fc2a4fb7790ada958dfc9, type: 3}
+  - {fileID: 2762160834087109840, guid: 30f92b4e16b60e649a98c31a4dc6ec4f, type: 3}
+  - {fileID: 5512231641441982216, guid: 32ee86626ddf989459d27ebeaf7e9e06, type: 3}
+  - {fileID: -7480684819829235772, guid: 19b3974e6029bf24aa04abe20d5e5014, type: 3}
