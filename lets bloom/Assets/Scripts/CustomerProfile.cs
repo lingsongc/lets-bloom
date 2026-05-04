@@ -8,8 +8,13 @@ public class CustomerProfile {
     public List<TraitDefinition> profileTraits;
     public List<string> profileDescriptions;
     
+    private SpriteDatabase spriteDatabase;
     public int spriteID;
     public Sprite sprite;
+
+    public void SetSpriteDatabase(SpriteDatabase database) {
+        spriteDatabase = database;
+    }
     
     public void SetTraits(List<TraitDefinition> preferTraitList, List<string> preferDescriptionList,
         List<TraitDefinition> profileTraitList, List<string> profileDescriptionList) {
@@ -17,5 +22,13 @@ public class CustomerProfile {
         preferDescriptions = preferDescriptionList;
         profileTraits = profileTraitList;
         profileDescriptions = profileDescriptionList;
+    }
+
+    public void SetHappy() {
+        sprite = spriteDatabase.GetHappySprite(spriteID);
+    }
+
+    public void SetSad() {
+        sprite = spriteDatabase.GetSadSprite(spriteID);
     }
 }

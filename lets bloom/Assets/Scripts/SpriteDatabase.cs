@@ -10,7 +10,15 @@ public class SpriteDatabase : ScriptableObject {
         return Random.Range(0, defaultSprites.Length);
     }
     
-    public Sprite getDefaultSprite(int id) {
+    public Sprite GetDefaultSprite(int id) {
         return defaultSprites[id];
+    }
+    
+    public Sprite GetHappySprite(int id) {
+        return happySprites[id];
+    }
+    
+    public Sprite GetSadSprite(int id) {
+        return sadSprites[id];
     }
 }

@@ -4,17 +4,29 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CustomerSpawner : MonoBehaviour {
+    
+    public static CustomerSpawner Instance { get; private set; }
+    
     [SerializeField] private GameObject customerPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private QueueManager queueManager;
 
     [SerializeField] private float minSpawnTime = 2f;
     [SerializeField] private float maxSpawnTime = 5f;
-    public static float spawnRange = 0.5f;
+    [SerializeField] public float spawnRange = 0.5f;
     
     [SerializeField] private TraitDatabase traitDatabase;
     [SerializeField] private SpriteDatabase spriteDatabase;
-    
+
+    private void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+        
+        Instance = this;
+    }
+
     private void Start() {
         StartCoroutine(SpawnLoop());
     }
@@ -41,6 +53,7 @@ public class CustomerSpawner : MonoBehaviour {
         customer.xOffset = xOffset;
         
         CustomerProfile profile = new CustomerProfile();
+        profile.SetSpriteDatabase(spriteDatabase);
         
         //Set Traits
         List<TraitDefinition> preferTraits = traitDatabase.GetTraits();
@@ -51,7 +64,7 @@ public class CustomerSpawner : MonoBehaviour {
         // Set Sprite
         int spriteID = spriteDatabase.GetRandomID();
         profile.spriteID = spriteID;
-        profile.sprite = spriteDatabase.getDefaultSprite(spriteID);
+        profile.sprite = spriteDatabase.GetDefaultSprite(spriteID);
         
         customer.SetProfile(profile);
         
