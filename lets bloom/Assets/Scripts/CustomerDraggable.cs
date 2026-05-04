@@ -83,10 +83,12 @@ public class CustomerDraggable : MonoBehaviour {
                 Vector3 snapPosition = snapTarget.position;
                 snapPosition.y += chairOffset;
                 
+                isMovingToQueue = false;
+                snapTarget = null;
+                targetPosition = snapPosition;
+                
                 transform.position = snapPosition;
-                
                 chair.Seat(gameObject);
-                
                 isLocked = true;
 
                 if (queueManager != null) {
