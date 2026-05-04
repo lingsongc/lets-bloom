@@ -15,6 +15,12 @@ public class TraitDatabase : ScriptableObject {
     public List<TraitDefinition> traits;
     public List<TraitDefinition> hobbies;
     
+    [SerializeField] private int exactMatchScore = 5;
+    [SerializeField] private int strongMatchScore = 2;
+    [SerializeField] private int weakMatchScore = 1;
+    [SerializeField] private int timeoutPenalty = -2;
+    
+    
     public List<TraitDefinition> GetTraits() {
         return new List<TraitDefinition>() {
             SelectTrait(appearances),
@@ -39,5 +45,33 @@ public class TraitDatabase : ScriptableObject {
         }
         
         return descriptions;
+    }
+
+    public int GetScore(CustomerProfile customerA, CustomerProfile customerB) {
+        int score = 0;
+
+        foreach (var preferTraitA in customerA.preferTraits) {
+            foreach (var profileTraitB in customerB.profileTraits) {
+                if (preferTraitA.traitName == profileTraitB.traitName) {
+                    score += exactMatchScore;
+                } else {
+                    score += preferTraitA.NumStrongMatch(profileTraitB) * strongMatchScore;
+                    score += preferTraitA.NumWeakMatch(profileTraitB) * weakMatchScore;
+                }
+            }
+        }
+        
+        foreach (var preferTraitB in customerB.preferTraits) {
+            foreach (var profileTraitA in customerA.profileTraits) {
+                if (preferTraitB.traitName == profileTraitA.traitName) {
+                    score += exactMatchScore;
+                } else {
+                    score += preferTraitB.NumStrongMatch(profileTraitA) * strongMatchScore;
+                    score += preferTraitB.NumWeakMatch(profileTraitA) * weakMatchScore;
+                }
+            }
+        }
+        
+        return score;
     }
 }

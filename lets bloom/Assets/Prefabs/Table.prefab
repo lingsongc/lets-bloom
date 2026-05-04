@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8407620323238048387}
   - component: {fileID: 8343283388709923269}
+  - component: {fileID: 8578292096100929089}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -93,6 +94,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8578292096100929089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4334560295834398168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89183bf2f10af00498a912445a086d0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TableManager
+  chairs:
+  - {fileID: 916257574615458423}
+  - {fileID: 4842241945619841578}
+  traitDatabase: {fileID: 11400000, guid: d8aefd81e7356fd498b92304c96ba2d2, type: 2}
 --- !u!1001 &3335096502355905472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +118,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8407620323238048387}
     m_Modifications:
+    - target: {fileID: 2521901380162382263, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: tableManager
+      value: 
+      objectReference: {fileID: 8578292096100929089}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7132764
@@ -150,6 +171,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+--- !u!114 &916257574615458423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2521901380162382263, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+  m_PrefabInstance: {fileID: 3335096502355905472}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a83f795c91e59043b9233bc69612e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChairManager
 --- !u!4 &1817474838305777944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
@@ -163,6 +195,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8407620323238048387}
     m_Modifications:
+    - target: {fileID: 2521901380162382263, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: tableManager
+      value: 
+      objectReference: {fileID: 8578292096100929089}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.6979702
@@ -212,6 +248,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+--- !u!114 &4842241945619841578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2521901380162382263, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+  m_PrefabInstance: {fileID: 7047164289644211101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a83f795c91e59043b9233bc69612e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChairManager
 --- !u!4 &6250114132376340805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}

@@ -32,7 +32,7 @@ public class QueueManager : MonoBehaviour {
             // Jiggle the Customers around
             for (int i = index; i < queue.Count; i++) {
                 queue[i].queueOffset = Random.Range(-queueVariation, queueVariation);
-                queue[i].xOffset = Random.Range(-CustomerSpawner.spawnRange, CustomerSpawner.spawnRange);
+                queue[i].xOffset = Random.Range(-CustomerSpawner.Instance.spawnRange, CustomerSpawner.Instance.spawnRange);
             }
             
             UpdateQueue();
