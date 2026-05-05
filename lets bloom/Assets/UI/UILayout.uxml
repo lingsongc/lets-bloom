@@ -1,0 +1,3 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Score: 0&#10;" selectable="false" focusable="false" name="ScoreLabel" style="align-self: center; justify-content: flex-start; -unity-font-style: bold; -unity-text-align: upper-center; font-size: 30px; top: 20px;"/>
+</ui:UXML>

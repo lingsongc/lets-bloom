@@ -39,10 +39,10 @@ public class TableManager : MonoBehaviour {
     }
 
     private void UpdateCustomerSprite(int score, CustomerDraggable customerA, CustomerDraggable customerB) {
-        if (score < 5) {
+        if (score <= 5) {
             customerA.GetProfile().SetSad();
             customerB.GetProfile().SetSad();
-        } else if (score > 15) {
+        } else if (score >= 15) {
             customerA.GetProfile().SetHappy();
             customerB.GetProfile().SetHappy();
         }
