@@ -6,6 +6,9 @@ public class DragManager : MonoBehaviour {
     private Camera mainCamera;
     private CustomerDraggable current;
     private Vector2 pointerPosition;
+    private bool isDragging;
+    
+    [SerializeField] private UIManager uiManager;
     
     private void Start() {
         mainCamera = Camera.main;
@@ -29,14 +32,15 @@ public class DragManager : MonoBehaviour {
         worldPosition.z = 0f;
 
         if (value.isPressed) {
-            TryStartDrag(worldPosition);
+            Select(worldPosition);
+            StartDrag(worldPosition);
         } else {
             StopDrag();
         }
     }
     
     // Check if grabbing onto a Customer and Drag it
-    private void TryStartDrag(Vector3 worldPosition) {
+    private void StartDrag(Vector3 worldPosition) {
         if (current != null) return;
 
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
@@ -55,6 +59,19 @@ public class DragManager : MonoBehaviour {
         if (current != null) {
             current.StopDrag();
             current = null;
+        }
+    }
+
+    private void Select(Vector3 worldPosition) {
+        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        CustomerDraggable customer = null;
+        
+        if (hit.collider != null) customer = hit.collider.GetComponent<CustomerDraggable>();
+
+        if (customer != null) {
+            uiManager.Show(customer.GetProfile());
+        } else {
+            uiManager.Hide();
         }
     }
 }
