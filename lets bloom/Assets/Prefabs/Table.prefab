@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -8841490917199087839, guid: bc3385880bb09394aa03aa6ee4c6d16a, type: 3}
+  m_Sprite: {fileID: -6045592402411493769, guid: c0b0c06aa66067e4d807e63e5a1277fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,11 +124,11 @@ PrefabInstance:
       objectReference: {fileID: 8578292096100929089}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7132764
+      value: -1.448
       objectReference: {fileID: 0}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21295595
+      value: -0.233
       objectReference: {fileID: 0}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -166,6 +166,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair_0
       objectReference: {fileID: 0}
+    - target: {fileID: 7651693519601733771, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651693519601733771, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315064969509785364, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2179634483601469429, guid: 2beb37cb67ee0f74c9cfea6e16607c0d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -201,11 +213,11 @@ PrefabInstance:
       objectReference: {fileID: 8578292096100929089}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6979702
+      value: 1.473
       objectReference: {fileID: 0}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23259854
+      value: -0.246
       objectReference: {fileID: 0}
     - target: {fileID: 3994784288527573720, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -243,6 +255,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7651693519601733771, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651693519601733771, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315064969509785364, guid: 4d43e1118e72aa449a41c398c676fd7d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2179634483601469429, guid: 2beb37cb67ee0f74c9cfea6e16607c0d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
