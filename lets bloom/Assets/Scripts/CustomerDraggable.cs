@@ -17,15 +17,22 @@ public class CustomerDraggable : MonoBehaviour {
     private QueueManager queueManager;
     private bool isMovingToQueue = false;
     private Vector3 targetPosition;
-    public float queueOffset;
-    public float xOffset;
+    [HideInInspector] public float queueOffset;
+    [HideInInspector] public float xOffset;
     
     // For Profile
     private CustomerProfile profile;
     private SpriteRenderer spriteRenderer;
+    
+    // For Cards
+    private Material defaultMaterial;
+    [SerializeField] private Material outlineMaterial;
+    private Material outlineInstance;
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMaterial = spriteRenderer.material;
+        outlineInstance = new Material(outlineMaterial);
     }
 
     private void Update() {
@@ -33,6 +40,7 @@ public class CustomerDraggable : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, 5f * Time.deltaTime);
             
             if (Vector3.Distance(transform.position, targetPosition) < 0.05f) {
+                transform.position = targetPosition;
                 isMovingToQueue = false;
             }
         }
@@ -125,5 +133,13 @@ public class CustomerDraggable : MonoBehaviour {
 
     public bool IsSeating() {
         return isLocked;
+    }
+
+    public void Select() {
+        spriteRenderer.material = outlineInstance;
+    }
+
+    public void Deselect() {
+        spriteRenderer.material = defaultMaterial;
     }
 }

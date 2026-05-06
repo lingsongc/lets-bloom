@@ -9,6 +9,8 @@ public class DragManager : MonoBehaviour {
     private bool isDragging;
     
     [SerializeField] private UIManager uiManager;
+    private CustomerDraggable selectedSeat;
+    private CustomerDraggable selectedQueue;
     
     private void Start() {
         mainCamera = Camera.main;
@@ -68,14 +70,43 @@ public class DragManager : MonoBehaviour {
         
         if (hit.collider != null) customer = hit.collider.GetComponent<CustomerDraggable>();
 
-        if (customer != null) {
-            if (customer.IsSeating()) {
-                uiManager.ShowSeat(customer.GetProfile());
-            } else {
-                uiManager.ShowQueue(customer.GetProfile());
-            }
-        } else {
-            uiManager.HideAll();
+        if (customer == null) {
+            ClearSelection();
+            return;
         }
+        
+        if (customer.IsSeating()) {
+            if (selectedSeat != null && selectedSeat != customer) {
+                selectedSeat.Deselect();
+                selectedSeat = null;
+            }
+            
+            selectedSeat = customer;
+            uiManager.ShowSeat(customer.GetProfile());
+        } else {
+            if (selectedQueue != null && selectedQueue != customer) {
+                selectedQueue.Deselect();
+                selectedQueue = null;
+            }
+            
+            selectedQueue = customer;
+            uiManager.ShowQueue(customer.GetProfile());
+        }
+        
+        customer.Select();
+    }
+
+    private void ClearSelection() {
+        if (selectedSeat != null) {
+            selectedSeat.Deselect();
+            selectedSeat = null;
+        }
+
+        if (selectedQueue != null) {
+            selectedQueue.Deselect();
+            selectedQueue = null;
+        }
+        
+        uiManager.HideAll();
     }
 }
