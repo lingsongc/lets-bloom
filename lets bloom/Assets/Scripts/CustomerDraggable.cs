@@ -122,4 +122,8 @@ public class CustomerDraggable : MonoBehaviour {
     public void UpdateSprite() {
         spriteRenderer.sprite = profile.sprite;
     }
+
+    public bool IsSeating() {
+        return isLocked;
+    }
 }

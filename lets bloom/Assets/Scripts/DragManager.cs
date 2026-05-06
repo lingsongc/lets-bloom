@@ -69,9 +69,13 @@ public class DragManager : MonoBehaviour {
         if (hit.collider != null) customer = hit.collider.GetComponent<CustomerDraggable>();
 
         if (customer != null) {
-            uiManager.Show(customer.GetProfile());
+            if (customer.IsSeating()) {
+                uiManager.ShowSeat(customer.GetProfile());
+            } else {
+                uiManager.ShowQueue(customer.GetProfile());
+            }
         } else {
-            uiManager.Hide();
+            uiManager.HideAll();
         }
     }
 }
