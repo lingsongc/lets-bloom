@@ -10,7 +10,7 @@ public class DragManager : MonoBehaviour {
     private Vector2 pointerPosition;
     private bool isDragging;
     
-    [SerializeField] private UIManager uiManager;
+    private UIManager uiManager;
     private CustomerDraggable selectedSeat;
     private CustomerDraggable selectedQueue;
     
@@ -24,6 +24,7 @@ public class DragManager : MonoBehaviour {
     
     private void Start() {
         mainCamera = Camera.main;
+        uiManager = UIManager.Instance;
     }
     
     private void Update() {
@@ -106,7 +107,7 @@ public class DragManager : MonoBehaviour {
         customer.Select();
     }
 
-    private void ClearSelection() {
+    public void ClearSelection() {
         if (selectedSeat != null) {
             selectedSeat.Deselect();
             selectedSeat = null;
@@ -123,6 +124,6 @@ public class DragManager : MonoBehaviour {
     public void SetSelectionToSeat() {
         selectedSeat = selectedQueue;
         selectedQueue = null;
-        uiManager.SwapToSeat();
+        uiManager.SwapToSeat(selectedSeat.GetProfile());
     }
 }

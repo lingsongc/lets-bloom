@@ -97,13 +97,13 @@ public class CustomerDraggable : MonoBehaviour {
                 snapTarget = null;
                 targetPosition = snapPosition;
                 
+                // Update the cards
+                DragManager.Instance.SetSelectionToSeat();
+                
                 // Seat the customer
                 transform.position = snapPosition;
                 chair.Seat(gameObject);
                 isLocked = true;
-                
-                // Update the cards
-                DragManager.Instance.SetSelectionToSeat();
 
                 if (queueManager != null) {
                     queueManager.Dequeue(this);

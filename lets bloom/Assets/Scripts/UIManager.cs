@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour {
     
-    private UIDocument uiDocument;
+    public static UIManager Instance { get; private set; }
     
     private VisualElement root;
+    
+    private Label scoreText;
     
     private Image seatCard;
     private Label seatProfileDesc;
@@ -16,9 +19,17 @@ public class UIManager : MonoBehaviour {
     private Label queuePreferDesc;
 
     private void Awake() {
-        uiDocument = GetComponent<UIDocument>();
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void Start() {
+        root = GetComponent<UIDocument>().rootVisualElement;
         
-        root = uiDocument.rootVisualElement;
+        scoreText = root.Q<Label>("ScoreLabel");
         
         seatCard = root.Q<Image>("SeatCard");
         seatProfileDesc = root.Q<Label>("SeatProfileDescription");
@@ -31,12 +42,17 @@ public class UIManager : MonoBehaviour {
         HideAll();
     }
 
+    public void UpdateScore(int score) {
+        scoreText.text = "Score: " + score;
+    }
+
     public void HideAll() {
         ToggleSeat(false);
         ToggleQueue(false);
     }
     
     public void ToggleSeat(bool state) {
+        Debug.Log("off");
         if (state) {
             seatCard.style.bottom = -70;
         } else {
@@ -64,10 +80,8 @@ public class UIManager : MonoBehaviour {
         ToggleQueue(true);
     }
 
-    public void SwapToSeat() {
-        seatProfileDesc.text = queueProfileDesc.text;
-        seatPreferDesc.text = queuePreferDesc.text;
+    public void SwapToSeat(CustomerProfile profile) {
+        ShowSeat(profile);
         ToggleQueue(false);
-        ToggleSeat(true);
     }
 }
