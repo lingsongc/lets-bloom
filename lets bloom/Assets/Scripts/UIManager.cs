@@ -32,19 +32,42 @@ public class UIManager : MonoBehaviour {
     }
 
     public void HideAll() {
-        seatCard.style.bottom = -425;
-        queueCard.style.bottom = -425;
+        ToggleSeat(false);
+        ToggleQueue(false);
+    }
+    
+    public void ToggleSeat(bool state) {
+        if (state) {
+            seatCard.style.bottom = -70;
+        } else {
+            seatCard.style.bottom = -425;
+        }
+    }
+    
+    public void ToggleQueue(bool state) {
+        if (state) {
+            queueCard.style.bottom = -70;
+        } else {
+            queueCard.style.bottom = -425;
+        }
     }
 
     public void ShowSeat(CustomerProfile profile) {
         seatProfileDesc.text = profile.GetProfileDescription();
         seatPreferDesc.text = profile.GetPreferDescription();
-        seatCard.style.bottom = -70;
+        ToggleSeat(true);
     }
     
     public void ShowQueue(CustomerProfile profile) {
         queueProfileDesc.text = profile.GetProfileDescription();
         queuePreferDesc.text = profile.GetPreferDescription();
-        queueCard.style.bottom = -70;
+        ToggleQueue(true);
+    }
+
+    public void SwapToSeat() {
+        seatProfileDesc.text = queueProfileDesc.text;
+        seatPreferDesc.text = queuePreferDesc.text;
+        ToggleQueue(false);
+        ToggleSeat(true);
     }
 }

@@ -183,6 +183,7 @@ MonoBehaviour:
   chairOffset: 0.7
   queueOffset: 0
   xOffset: 0
+  dragManager: {fileID: 676089327651498817, guid: 6e9ee0acbfa4046489f2830f31501308, type: 3}
   outlineMaterial: {fileID: 2100000, guid: f552d5874d81dc54cadd320e652fd5c5, type: 2}
 --- !u!114 &4041257768126406133
 MonoBehaviour:

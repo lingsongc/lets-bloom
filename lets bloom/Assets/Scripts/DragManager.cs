@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class DragManager : MonoBehaviour {
     
+    public static DragManager Instance { get; private set; }
+    
     private Camera mainCamera;
     private CustomerDraggable current;
     private Vector2 pointerPosition;
@@ -11,6 +13,14 @@ public class DragManager : MonoBehaviour {
     [SerializeField] private UIManager uiManager;
     private CustomerDraggable selectedSeat;
     private CustomerDraggable selectedQueue;
+    
+    private void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     
     private void Start() {
         mainCamera = Camera.main;
@@ -108,5 +118,11 @@ public class DragManager : MonoBehaviour {
         }
         
         uiManager.HideAll();
+    }
+
+    public void SetSelectionToSeat() {
+        selectedSeat = selectedQueue;
+        selectedQueue = null;
+        uiManager.SwapToSeat();
     }
 }

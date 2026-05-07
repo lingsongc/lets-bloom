@@ -88,16 +88,22 @@ public class CustomerDraggable : MonoBehaviour {
             ChairManager chair = snapTarget.GetComponent<ChairManager>();
             
             if (chair != null && !chair.IsOccupied()) {
+                // Get Chair position
                 Vector3 snapPosition = snapTarget.position;
                 snapPosition.y += chairOffset;
                 
+                // reset dragging variables
                 isMovingToQueue = false;
                 snapTarget = null;
                 targetPosition = snapPosition;
                 
+                // Seat the customer
                 transform.position = snapPosition;
                 chair.Seat(gameObject);
                 isLocked = true;
+                
+                // Update the cards
+                DragManager.Instance.SetSelectionToSeat();
 
                 if (queueManager != null) {
                     queueManager.Dequeue(this);
