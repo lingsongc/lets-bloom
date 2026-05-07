@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CustomerProfile {
     
     public List<TraitDefinition> preferTraits;
-    public List<string> preferDescriptions;
+    private List<string> preferDescriptions;
     public List<TraitDefinition> profileTraits;
-    public List<string> profileDescriptions;
+    private List<string> profileDescriptions;
     
     private SpriteDatabase spriteDatabase;
     public int spriteID;
@@ -30,5 +31,13 @@ public class CustomerProfile {
 
     public void SetSad() {
         sprite = spriteDatabase.GetSadSprite(spriteID);
+    }
+
+    public string GetPreferDescription() {
+        return string.Join("\n \n", preferDescriptions);
+    }
+    
+    public string GetProfileDescription() {
+        return string.Join("\n \n", profileDescriptions);
     }
 }

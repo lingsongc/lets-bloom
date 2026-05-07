@@ -23,7 +23,6 @@ public class CustomerSpawner : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
-        
         Instance = this;
     }
 

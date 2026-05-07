@@ -1,0 +1,23 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Score: 0&#10;" selectable="false" focusable="false" name="ScoreLabel" style="align-self: center; justify-content: flex-start; -unity-font-style: bold; -unity-text-align: upper-center; font-size: 30px; top: 20px;"/>
+    <ui:Image name="SeatCard" style="background-image: url(&quot;project://database/Assets/Art/Placeholder/card.png?fileID=2800000&amp;guid=077727bfb30761d41bc619993b71e0dc&amp;type=3#card&quot;); position: absolute; bottom: -70px; left: 20px; background-color: rgba(0, 0, 0, 0); width: 810px; height: 500px; flex-direction: row; align-items: center; justify-content: center; align-content: auto; aspect-ratio: 1; flex-grow: 1;">
+        <ui:VisualElement name="SeatProfile" style="flex-grow: 1; width: 50%; height: 90%; align-self: auto;">
+            <ui:Label text="I am someone" name="SeatProfileTitle" style="margin-left: 8px; -unity-font-style: bold; font-size: 24px;"/>
+            <ui:Label text="" name="SeatProfileDescription" style="font-size: 24px; margin-left: 8px; flex-wrap: nowrap; white-space: normal;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="SeatPreference" style="flex-grow: 1; width: 50%; height: 90%; align-self: auto;">
+            <ui:Label text="I want someone" name="SeatPreferTitle" style="margin-left: 8px; -unity-font-style: bold; font-size: 24px;"/>
+            <ui:Label text="&#10;" name="SeatPreferDescription" style="font-size: 24px; margin-left: 8px; white-space: normal;"/>
+        </ui:VisualElement>
+    </ui:Image>
+    <ui:Image name="QueueCard" style="background-image: url(&quot;project://database/Assets/Art/Placeholder/card.png?fileID=2800000&amp;guid=077727bfb30761d41bc619993b71e0dc&amp;type=3#card&quot;); position: absolute; bottom: -70px; left: auto; background-color: rgba(0, 0, 0, 0); width: 810px; height: 500px; flex-direction: row; align-items: center; justify-content: center; align-content: auto; aspect-ratio: 1; flex-grow: 1; right: 20px;">
+        <ui:VisualElement name="QueueProfile" style="flex-grow: 1; width: 50%; height: 90%; align-self: auto;">
+            <ui:Label text="I am someone" name="QueueProfileTitle" style="margin-left: 8px; -unity-font-style: bold; font-size: 24px;"/>
+            <ui:Label text="" name="QueueProfileDescription" style="font-size: 24px; margin-left: 8px; flex-wrap: nowrap; white-space: normal;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="QueuePreference" style="flex-grow: 1; width: 50%; height: 90%; align-self: auto;">
+            <ui:Label text="I want someone" name="QueuePreferTitle" style="margin-left: 8px; -unity-font-style: bold; font-size: 24px;"/>
+            <ui:Label text="&#10;" name="QueuePreferDescription" style="font-size: 24px; margin-left: 8px; white-space: normal;"/>
+        </ui:VisualElement>
+    </ui:Image>
+</ui:UXML>

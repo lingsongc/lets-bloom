@@ -3,12 +3,28 @@ using UnityEngine.InputSystem;
 
 public class DragManager : MonoBehaviour {
     
+    public static DragManager Instance { get; private set; }
+    
     private Camera mainCamera;
     private CustomerDraggable current;
     private Vector2 pointerPosition;
+    private bool isDragging;
+    
+    private UIManager uiManager;
+    private CustomerDraggable selectedSeat;
+    private CustomerDraggable selectedQueue;
+    
+    private void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     
     private void Start() {
         mainCamera = Camera.main;
+        uiManager = UIManager.Instance;
     }
     
     private void Update() {
@@ -29,14 +45,15 @@ public class DragManager : MonoBehaviour {
         worldPosition.z = 0f;
 
         if (value.isPressed) {
-            TryStartDrag(worldPosition);
+            Select(worldPosition);
+            StartDrag(worldPosition);
         } else {
             StopDrag();
         }
     }
     
     // Check if grabbing onto a Customer and Drag it
-    private void TryStartDrag(Vector3 worldPosition) {
+    private void StartDrag(Vector3 worldPosition) {
         if (current != null) return;
 
         RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
@@ -56,5 +73,57 @@ public class DragManager : MonoBehaviour {
             current.StopDrag();
             current = null;
         }
+    }
+
+    private void Select(Vector3 worldPosition) {
+        RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+        CustomerDraggable customer = null;
+        
+        if (hit.collider != null) customer = hit.collider.GetComponent<CustomerDraggable>();
+
+        if (customer == null) {
+            ClearSelection();
+            return;
+        }
+        
+        if (customer.IsSeating()) {
+            if (selectedSeat != null && selectedSeat != customer) {
+                selectedSeat.Deselect();
+                selectedSeat = null;
+            }
+            
+            selectedSeat = customer;
+            uiManager.ShowSeat(customer.GetProfile());
+        } else {
+            if (selectedQueue != null && selectedQueue != customer) {
+                selectedQueue.Deselect();
+                selectedQueue = null;
+            }
+            
+            selectedQueue = customer;
+            uiManager.ShowQueue(customer.GetProfile());
+        }
+        
+        customer.Select();
+    }
+
+    public void ClearSelection() {
+        if (selectedSeat != null) {
+            selectedSeat.Deselect();
+            selectedSeat = null;
+        }
+
+        if (selectedQueue != null) {
+            selectedQueue.Deselect();
+            selectedQueue = null;
+        }
+        
+        uiManager.HideAll();
+    }
+
+    public void SetSelectionToSeat() {
+        selectedSeat = selectedQueue;
+        selectedQueue = null;
+        uiManager.SwapToSeat(selectedSeat.GetProfile());
     }
 }
